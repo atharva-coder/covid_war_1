@@ -35,7 +35,9 @@ function setup(){
   spaceShip.scale = 0.5;
 
  
- 
+  stoneGrp = new Group();
+  bulletGrp = new Group();stoneGrp = new Group();
+  bulletGrp = new Group();
   
 }
 function draw(){
@@ -46,8 +48,7 @@ background(0);
  
   pg1();
 
-  stoneGrp = new Group();
-  bulletGrp = new Group();
+  
 
 
 
@@ -64,6 +65,7 @@ playButton2.visible = true;
 
 if(mousePressedOver(playButton2)){
   gameState=2;
+  console.log("gameState=2",gameState);
 }
   if(gameState === 2){
   playButton2.visible = false;
@@ -73,12 +75,16 @@ if(mousePressedOver(playButton2)){
       stoneGrp.destroyEach();
       bulletGrp.destroyEach();
       score = score+1
+     
+    }
+    if(score === 10){
+      background("green")
+      end();
+      
     }
   }
-if(score>10){
-  end();
-}
 
+ 
 
   drawSprites();
   
@@ -198,11 +204,21 @@ function keyPressed(){
   }
 }
 function end(){
+
+  createCanvas(1000,1000);
+  background("green")
   console.log("Game Ended");
   //game.update(2);
-  clear();
+  //clear();
   fill("blue");
-  textSize(40);
+  textSize(60);
   text("GameOver", 350,300);
+  fill("yellow");
+  textSize(40);
+  text("Good Job now You are free from The Covid-19",50,400);
+  text("You are been vaccinated now",100,450);
+  spaceShip.destroy();
+  stoneGrp.destroyEach();
+  bulletGrp.destroyEach();
 }
 
